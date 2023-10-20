@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="C:\Users\Det-Pc\eclipse-workspace\com.espol.edu\src\main\java\com\espol\edu\VacationsCalculator.java">
+<error line="2" severity="error" message="Line does not match expected header line of &apos;// All rights reserved&apos;." source="com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"/>
+<error line="22" column="9" severity="error" message="Missing a Javadoc comment." source="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck"/>
+</file>
+</checkstyle>
