@@ -2,7 +2,7 @@ package com.espol.edu;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-public class DiningManager {
+public class DiningManager { //NOPMD
 	public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Map<Integer, Integer> order = new HashMap<>();
@@ -15,11 +15,11 @@ public class DiningManager {
         foodNames.put(4, "Filete");
         foodNames.put(5, "Ensalada");
 
-        menu.put(1, 10); // 1: Hamburguesa
-        menu.put(2, 12); // 2: Pizza
-        menu.put(3, 8); // 3: Pasta
-        menu.put(4, 15); // 4: Filete
-        menu.put(5, 6); // 5: Ensalada
+        menu.put(1, 10); 
+        menu.put(2, 12); 
+        menu.put(3, 8); 
+        menu.put(4, 15); 
+        menu.put(5, 6); 
 
         double totalCost = 5; // Costo base
 
@@ -50,14 +50,13 @@ public class DiningManager {
                         if (quantity <= 0 || quantity > 100) {
                             System.out.println("Error: Cantidad inválida. La cantidad debe estar entre 1 y 100.");
                         } else {
-                            break; // Cantidad válida, salir del bucle interno
+                            break; 
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Error: Cantidad no válida. Por favor, ingrese un número entero válido.");
                     }
                 }
 
-                // Validar la disponibilidad de la comida en el menú
                 if (menu.containsKey(mealNumber)) {
                     order.put(mealNumber, quantity);
                 } else {
@@ -75,7 +74,6 @@ public class DiningManager {
 
         int totalQuantity = order.values().stream().mapToInt(Integer::intValue).sum();
 
-        // Aplicar descuentos según los requisitos
         if (totalQuantity > 10) {
             totalCost *= 0.8; // Descuento del 20%
         } else if (totalQuantity > 5) {
@@ -85,7 +83,7 @@ public class DiningManager {
         if (totalCost > 100) {
             totalCost -= 25; // Descuento de $25 si el costo total supera $100
         } else if (totalCost > 50) {
-            totalCost -= 10; // Descuento de $10 si el costo total supera $50 pero no llega a $100
+            totalCost -= 10; // Descuento de $10 si el costo total supera $50
         }
 
         if (totalCost > 0) {

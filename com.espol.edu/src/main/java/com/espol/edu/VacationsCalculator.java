@@ -20,37 +20,34 @@ static  int totalCost = 1000;
 	* @args 
 	*/
 	public static void main(String[] args) {
-		/*
-		* .Main function for the workshop
-		*/
-		Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         String destination;
-        int nTravelers;
+        int numTravelers;
         int duration;
-        System.out.println("******Vacation Package Cost Estimator******");
+
         while (true) {
             System.out.print("Enter the destination of the vacation: ");
             destination = input.nextLine();
             if (isValidDestination(destination)) {
                 break;
             } else {
-                System.out.println("Please enter a valid destination name.");
+                System.out.println("Invalid destination. Please enter a valid alphabetic destination name.");
             }
         }
 
         while (true) {
-            System.out.print("Enter the number of travelers (1-MAXPERSON): ");
+            System.out.print("Enter the number of travelers (1-80): ");
             if (input.hasNextInt()) {
-                nTravelers = input.nextInt();
-                if (nTravelers >= 1 && nTravelers <= MAXPERSON) {
+                numTravelers = input.nextInt();
+                if (numTravelers >= 1 && numTravelers <= 80) {
                     break;
                 } else {
-                    System.out.println("Please enter number between 1 and MAXPERSON");
+                    System.out.println("Invalid number of travelers. Please enter a number between 1 and 80.");
                 }
             } else {
-                System.out.println("Please enter a number between 1 and MAXPERSON");
-                input.next(); // Clear the invalid input
+                System.out.println("Invalid input. Please enter a valid number between 1 and 80.");
+                input.next(); 
             }
         }
 
@@ -61,37 +58,30 @@ static  int totalCost = 1000;
                 if (duration > 0) {
                     break;
                 } else {
-                    System.out.println("Please enter a positive number.");
+                    System.out.println("Invalid duration. Please enter a positive number.");
                 }
             } else {
-                System.out.println("Please enter a number for the duration.");
+                System.out.println("Invalid. Please enter a valid duration.");
                 input.next(); // Clear the invalid input
             }
         }
 
-        int totalCost = calculateVacationCost(destination, nTravelers, duration);
+        int totalCost = calculateVacationCost(destination, numTravelers, duration);
 
         if (totalCost == -1) {
             System.out.println("Invalid input or exceeds group limit.");
         } else {
-            System.out.println("Total cost of the package: $" + totalCost);
+            int addOnsCost = calculateAddOnsCost(numTravelers);
+            int totalCostWithAddOns = totalCost + addOnsCost;
+            System.out.println("Total cost of the vacation package including add-ons: $" + totalCostWithAddOns);
         }
 
         input.close();
     }
-//CHECKSTYLE:ON
-	/**
-     * Say something.
-     * @param destination nTravelers duration
-     */
-    private static int calculateVacationCost(String destination, int nTravelers, int duration) {
-    	/*
-		* .Calculate the cost of vacations
-		*/
-        // Base cost
-        
 
-        // Additional cost based on destination
+    public static int calculateVacationCost(String destination, int numTravelers, int duration) {
+        int totalCost = 1000;
+
         if (isPopularDestination(destination)) {
             if (destination.equalsIgnoreCase("Paris")) {
                 totalCost += 500;
@@ -100,49 +90,42 @@ static  int totalCost = 1000;
             }
         }
 
-        // Group discount
-        if (nTravelers > 4 && nTravelers < DISCOUNT) {
+        if (numTravelers > 4 && numTravelers < 10) {
             totalCost = (int) (totalCost * 0.9);
-        } else if (nTravelers >= DISCOUNT) {
+        } else if (numTravelers >= 10) {
             totalCost = (int) (totalCost * 0.8);
         }
 
-        // Penalty fee for vacation duration
         if (duration < 7) {
-            totalCost += FEE;
+            totalCost += 200;
         }
 
-        // Promotion policy
-        if (duration > 30 || (nTravelers == 2)) {
-            totalCost -= FEE;
+        if (duration > 30 || (numTravelers == 2)) {
+            totalCost -= 200;
         }
 
-        // Vacation package limit
-        if (nTravelers > MAXPERSON) {
+        if (numTravelers > 80) {
             return -1;  // Exceeds group limit
         }
 
         return totalCost;
     }
-    /**
-     * Say something.
-     * @param destination
-     * @return validation
-     */
+
     public static boolean isPopularDestination(String destination) {
         return destination.equalsIgnoreCase("Paris") || destination.equalsIgnoreCase("New York City");
     }
 
-    /**
-     * Say something.
-     * @param input
-     * @return validation
-     */
     public static boolean isValidDestination(String input) {
-    	/*
-    	* .Popular destination validator
-    	*/
-        // Check if the input contains only alphabetic characters and spaces
         return input != null && !input.isEmpty() && input.matches("^[a-zA-Z ]+$");
+    }
+
+    public static int calculateAddOnsCost(int numTravelers) {
+        int allInclusiveCost = 200;
+        int adventureActivitiesCost = 150;
+        int spaAndWellnessCost = 100;
+
+        int totalAddOnsCost = (allInclusiveCost + adventureActivitiesCost + spaAndWellnessCost) * numTravelers;
+
+        return totalAddOnsCost;
     }
 }
