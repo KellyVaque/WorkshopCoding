@@ -1,0 +1,5 @@
+src/main/java/com/espol/edu/DiningManager.java:5:	UseUtilityClass:	UseUtilityClass: This utility class has a non-private constructor
+src/main/java/com/espol/edu/VacationsCalculator.java:96:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/main/java/com/espol/edu/VacationsCalculator.java:98:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/main/java/com/espol/edu/VacationsCalculator.java:133:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
+src/main/java/com/espol/edu/VacationsCalculator.java:133:	LiteralsFirstInComparisons:	LiteralsFirstInComparisons: Position literals first in String comparisons
